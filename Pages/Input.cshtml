@@ -1,0 +1,47 @@
+﻿@page
+@model ACS_Form.Pages.InputModel
+@{
+    ViewData["Title"] = "User Suggestions & Observations";
+}
+<style>
+    .box {
+        width: 80%;
+        margin: 20px auto;
+        border-radius: 15px;
+        background: #00bfb6;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-family: Avenir;
+        position: relative;
+    }
+
+    .sb:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 15px solid transparent;
+        border-right: 15px solid #00bfb6;
+        border-top: 15px solid #00bfb6;
+        border-bottom: 15px solid transparent;
+        left: -16px;
+        top: 0px;
+    }
+</style>
+
+<div class="testimonials">
+    @foreach (var userInput in Model.userInput)
+    {
+        <section>
+            <div class="content">
+                <blockquote>
+                    <p>@Html.DisplayFor(m => userInput.input)</p>
+                </blockquote>
+                <div class="author">
+                    <p class="credit">- <strong>@Html.DisplayFor(m => userInput.name)</strong> <span>@Html.DisplayFor(m => userInput.info)</span></p>
+                </div>
+            </div>
+        </section>
+    }
+</div>

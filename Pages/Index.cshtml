@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+    <!-- Highlights -->
+        <div class="inner">
+            <div class="highlights">
+                <section>
+                    <div class="content">
+                        <header>
+                            <a target="_blank" href="https://docs.google.com/forms/d/1P214BNsp2aSS-mW6JCcCbljubSZAG4jEbUl85LDJXhQ/edit" class="icon fa-wpforms"><span class="label">Icon</span></a>
+                            <h3>Form</h3>
+                            <p>View and edit the Google Form</p>
+                        </header>
+                    </div>
+                </section>
+                <section>
+                    <div class="content">
+                        <header>
+                            <a target="_blank" href="https://docs.google.com/spreadsheets/d/1D-8P4mfhVw-TNQnyzkJT2aPVxSQSIOnu_AR-AXWAGxk/edit?usp=forms_web_b#gid=955622265" class="icon fa-file-excel-o"><span class="label">Icon</span></a>
+                            <h3>Answer spreadsheet</h3>
+                            <p>View and edit the answer spreadsheet</p>
+                        </header>
+                    </div>
+                </section>
+                <section>
+                    <div class="content">
+                        <header>
+                            <input type="file" id="upload" accept=".xls,.xlsx" name="upload" style="visibility: hidden; width: 0.1px; height: 0.1px"/>
+                            <a href="" onclick="document.getElementById('upload').click(); return false" class="icon fa-database"><span class="label">Icon</span></a>
+                            <h3>Update database</h3>
+                            <p>Upload a new .xlsx file to update the database</p>
+                        </header>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
