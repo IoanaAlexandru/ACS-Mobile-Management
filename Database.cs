@@ -124,9 +124,12 @@ namespace ACS_Form
                         foreach (IXLCell currentCell in currentRow.Cells())
                         {
                             // Make it SQL Proof from reading
-                            values.Add(stringTypes.Contains(currentCell.DataType)
-                                ? $"N'{currentCell.Value}'"
-                                : currentCell.Value.ToString());
+                            if (currentCell.Value.ToString().Trim().Equals(""))
+                                values.Add("NULL");
+                            else
+                                values.Add(stringTypes.Contains(currentCell.DataType)
+                                    ? $"N'{currentCell.Value}'"
+                                    : currentCell.Value.ToString());
                         }
 
                         rows.Add(values);
