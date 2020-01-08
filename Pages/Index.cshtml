@@ -4,42 +4,55 @@
     ViewData["Title"] = "Home page";
 }
 
-    <!-- Highlights -->
-        <div class="inner">
-            <div class="highlights">
-                <section>
-                    <div class="content">
-                        <header>
-                            <a target="_blank" href="https://docs.google.com/forms/d/1P214BNsp2aSS-mW6JCcCbljubSZAG4jEbUl85LDJXhQ/edit" class="icon fa-wpforms"><span class="label">Icon</span></a>
-                            <h3>Form</h3>
-                            <p>View and edit the Google Form</p>
-                        </header>
-                    </div>
-                </section>
-                <section>
-                    <div class="content">
-                        <header>
-                            <a target="_blank" href="https://docs.google.com/spreadsheets/d/1D-8P4mfhVw-TNQnyzkJT2aPVxSQSIOnu_AR-AXWAGxk/edit?usp=forms_web_b#gid=955622265" class="icon fa-file-excel-o"><span class="label">Icon</span></a>
-                            <h3>Answer spreadsheet</h3>
-                            <p>View and edit the answer spreadsheet</p>
-                        </header>
-                    </div>
-                </section>
-                <section>
-                    <div class="content">
-                        <header>
-                            <a asp-page="/Index" class="icon fa-database"><span class="label">Icon</span></a>
-                            <h3>Refresh database</h3>
-                            <p>Reload the answers into the database</p>
-                        </header>
-                    </div>
-                </section>
+<!-- Highlights -->
+<div class="inner">
+    <div class="highlights">
+        <section>
+            <div class="content">
+                <header>
+                    <a target="_blank" href="https://docs.google.com/forms/d/1P214BNsp2aSS-mW6JCcCbljubSZAG4jEbUl85LDJXhQ/edit" class="icon fa-wpforms"><span class="label">Icon</span></a>
+                    <h3>Form</h3>
+                    <p>View and edit the Google Form</p>
+                </header>
             </div>
-        </div>
+        </section>
+        <section>
+            <div class="content">
+                <header>
+                    <a target="_blank" href="https://docs.google.com/spreadsheets/d/1D-8P4mfhVw-TNQnyzkJT2aPVxSQSIOnu_AR-AXWAGxk/edit?usp=forms_web_b#gid=955622265" class="icon fa-file-excel-o"><span class="label">Icon</span></a>
+                    <h3>Answer spreadsheet</h3>
+                    <p>View and edit the answer spreadsheet</p>
+                </header>
+            </div>
+        </section>
+        <section>
+            <div class="content">
+                <header>
+                    <a onclick="GetMessage()" class="icon fa-database"><span class="label">Icon</span></a>
+                    <h3>Refresh database</h3>
+                    <p id="loading">Reload the answers into the database</p>                  
+                </header>
+            </div>
+        </section>
+    </div>
+</div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+<div id="toast"><div id="img" class="icon fa-check"></div><div id="desc">Database refreshed.</div></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function GetMessage() {
+                $("p#loading").html("<img src='https://i.gifer.com/ZZ5H.gif' style='width: 30px;'>");
+                $.post("/", function (data) {
+                    $("p#loading").html("Reload the answers into the database");
+                    launch_toast();
+                });
+        }
+
+        function launch_toast() {
+            var x = document.getElementById("toast")
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+        }
+    </script>
+}

@@ -7,15 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ACS_Form.Pages
 {
+    [IgnoreAntiforgeryToken(Order = 1001)]
+
     public class IndexModel : PageModel
     {
         public void OnGet()
         {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                (new Database()).RefreshData();
-            }).Start();
+        }
+
+        public void OnPost()
+        {
+            _ = (new Database()).RefreshData();
         }
     }
 }

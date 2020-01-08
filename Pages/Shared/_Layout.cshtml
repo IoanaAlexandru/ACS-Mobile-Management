@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
+    @RenderSection("Styles", required: false)
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155380412-1"></script>
     <script>
@@ -58,7 +60,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - ACS Mobile</p>
+            <p>&copy; 2020 - ACS Mobile</p>
         </footer>
     </div>
 
