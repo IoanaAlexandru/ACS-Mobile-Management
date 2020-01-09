@@ -120,18 +120,28 @@ namespace ACS_Form
                     foreach (IXLRow currentRow in firstSheet.Rows().Skip(1))
                     {
                         List<string> values = new List<string>();
+                        bool emptyRow = true;
 
                         foreach (IXLCell currentCell in currentRow.Cells())
                         {
                             // Make it SQL Proof from reading
                             if (currentCell.Value.ToString().Trim().Equals(""))
+                            {
                                 values.Add("NULL");
+                            }
                             else
+                            {
+                                emptyRow = false;
                                 values.Add(stringTypes.Contains(currentCell.DataType)
                                     ? $"N'{currentCell.Value}'"
                                     : currentCell.Value.ToString());
+                            }
                         }
 
+                        // If the row is empty, stop parsing
+                        if (emptyRow) break;
+
+                        // Otherwise, add it
                         rows.Add(values);
                     }
                 }

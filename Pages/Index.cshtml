@@ -30,29 +30,32 @@
                 <header>
                     <a onclick="GetMessage()" class="icon fa-database"><span class="label">Icon</span></a>
                     <h3>Refresh database</h3>
-                    <p id="loading">Reload the answers into the database</p>                  
+                    <p id="loading">Reload the answers into the database</p>
                 </header>
             </div>
         </section>
     </div>
 </div>
 
-<div id="toast"><div id="img" class="icon fa-check"></div><div id="desc">Database refreshed.</div></div>
+<div id="toast"></div>
 
 @section Scripts {
     <script type="text/javascript">
         function GetMessage() {
-                $("p#loading").html("<img src='https://i.gifer.com/ZZ5H.gif' style='width: 30px;'>");
-                $.post("/", function (data) {
-                    $("p#loading").html("Reload the answers into the database");
-                    launch_toast();
-                });
+            $("p#loading").html("<img src='https://i.gifer.com/ZZ5H.gif' style='width: 30px;'>");
+            $.post("/", function (data) {
+                $("p#loading").html("Reload the answers into the database");
+                launch_toast(data);
+            });
         }
 
-        function launch_toast() {
+        function launch_toast(success) {
             var x = document.getElementById("toast")
             x.className = "show";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+            x.innerHTML = success
+                ? '<div id="img" class="icon fa-check"></div><div id="desc">Database refreshed.</div>'
+                : '<div id="img" class="icon fa-ban"></div><div id="desc">Something went wrong.</div>';
+            setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
         }
     </script>
 }
